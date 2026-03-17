@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps Notes App</title>
+  <style>
+    body { font-family: sans-serif; background: #1a1a2e; display: flex;
+           justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .card { background: white; padding: 30px; border-radius: 12px;
+            width: 420px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    h2 { text-align: center; margin-bottom: 20px; }
+    input[type=text] { width: 70%; padding: 8px; border: 1px solid #ccc;
+                        border-radius: 6px; font-size: 14px; }
+    button { padding: 8px 14px; background: #4a90e2; color: white;
+             border: none; border-radius: 6px; cursor: pointer; }
+    .note-row { display: flex; justify-content: space-between;
+                align-items: center; padding: 10px 0;
+                border-bottom: 1px solid #eee; font-size: 14px; }
+    .delete-btn { background: #e74c3c; font-size: 12px; }
+    .footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>DevOps Notes App</h2>
+    <form action="/add" method="POST" style="display:flex; gap:8px; margin-bottom:16px;">
+      <input type="text" name="content" placeholder="Type a note..." required/>
+      <button type="submit">Add</button>
+    </form>
+    {% for note in notes %}
+    <div class="note-row">
+      <span>{{ note[1] }}</span>
+      <a href="/delete/{{ note[0] }}"><button class="delete-btn">Delete</button></a>
+    </div>
+    {% endfor %}
+    <div class="footer">Powered by Flask · Docker · Jenkins · Kubernetes</div>
+  </div>
+</body>
+</html>
+```
+
+---
+
+## Step 3 — requirements.txt
+```
+flask
+psycopg2-binary
