@@ -26,14 +26,14 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                sh '''
-                    export KUBECONFIG=/home/ubuntu/.kube/config
-                    kubectl apply -f k8s/
-                    kubectl set image deployment/notes-app notes-app=$DOCKER_IMAGE:$BUILD_NUMBER
-                '''
+    steps {
+        sh '''
+            export KUBECONFIG=/var/lib/jenkins/.kube/config
+            kubectl apply -f k8s/
+            kubectl set image deployment/notes-app notes-app=$DOCKER_IMAGE:$BUILD_NUMBER
+        '''
             }
-        }
+      }
     }
 }
 
